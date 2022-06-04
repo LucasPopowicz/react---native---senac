@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="/estilos.css"/>
+
+<body>
+    
+    <div class="menu">
+        <a href="index.html" target="centro"><button class="botão">HOME</button></a>
+        <a href="cliente.html" target="centro"><button class="botão">CLIENTES</button></a>
+        <a href="produtos.html" target="centro"><button class="botão">PRODUTOS</button></a>
+        <a href="login.html" target="centro"><button class="botão">LOGIN</button></a>
+        </div>
+    <button onclick="load()">Pesquisar</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Fone</th>
+            </tr>
+        </thead>
+        <tbody id="dados">
+
+
+        </tbody>
+    </table>
+    <script>
+        var clientes = ""
+        function load() {
+            fetch("http://localhost:3000/clientes")
+                .then(x => x.json()) //usar o .json vem em dados .text vem em forma de texto
+                .then(clientes => {
+                    var linhas = ""
+                  
+                    for (let i = 0; i < clientes.length; i++) {
+                        linhas += `<tr>
+                <td>${clientes[i].id}</td>
+                <td>${clientes[i].nome}</td>
+                <td>${clientes[i].email}</td>
+                <td>${clientes[i].fone}</td>
+                </tr>`
+                    }
+                    document.getElementById("dados").innerHTML = linhas
+
+                }) // usar dois .then pra ter garantia que o primeiro já foi executado
+       
+
+        }
+
+       /** function display(dados) {
+            //var obj = JSON.parse(dados) //converte o texto em objetos
+            //console.log(dados)// usar o valor da var de cima 
+
+        }
+*/
+        
+      
+    </script>
+</body>
+
+</html>
