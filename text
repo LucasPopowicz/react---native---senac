@@ -1,0 +1,52 @@
+//** verbo post recebe dados */
+verbo put faz alterações e patch tmb e é mais ultilizado
+
+
+
+
+{
+    "clientes": [
+        {
+            "id":1,
+            "nome": "José da Silva",
+            "email": "jose@gmail.com",
+            "fone": "123-45678"
+        },
+        {
+        "id":2,
+        "nome": "Maria da Silva",
+        "email": "maria@gmail.com",
+        "fone": "987-654321"
+        },
+        {
+            "id":3,
+            "nome": "Antonio da Silva",
+            "email": "antonio@gmail.com",
+            "fone": "987-6521"
+            }
+    ],
+    "produtos": [
+            {
+                "item": 1,
+                "produto": "feijão",
+                "valor": "15,90",
+                "quantidade": "20kg"
+
+            },
+            {
+                "item": 2,
+                "produto": "bacon",
+                "valor": "20,90",
+                "quantidade": "5kg"
+
+            },
+            {
+                "item": 3,
+                "produto": "carne suina",
+                "valor": "25,90",
+                "quantidade": "10kg"
+
+            }
+
+    ]
+}

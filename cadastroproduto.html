@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: auto;
+            padding: 5px;
+
+        }
+
+        input {
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="/estilos.css" />
+</head>
+
+<body>
+    <div class="menu">
+        <a href="index.html" target="centro"><button class="botão">HOME</button></a>
+        <a href="cadastrocliente.html" target="centro"><button class="botão">CADASTRO DE CLIENTES</button></a>
+        <a href="cliente.html" target="centro"><button class="botão">CLIENTES</button></a>
+        <a href="cadastroproduto.html" target="centro"><button class="botão">CADASTRO DE PRODUTO</button></a>
+        <a href="produtos.html" target="centro"><button class="botão">PRODUTOS</button></a>
+        <a href="login.html" target="centro"><button class="botão">LOGIN</button></a>
+    </div>
+    <div class="container">
+        <label>
+            Descrição 
+        </label>
+        <input type="text" id="descricao" placeholder="Informe a Descrição do produto" />
+        </label>
+        Quantidade
+        <label>
+            <input type="text" id="quantidade" placeholder="Informe a quantidade em estoque" />
+        </label>
+        Valor
+        </label>
+        <input type="text" id="valor" placeholder="Informe o valor pago" />
+        <div>
+            <button onclick="salvar()">Salvar</button>
+            <button onclick="limpar()">Apagar</button>
+        </div>
+    </div>
+    <script>
+        function salvar() {
+            const produto = {
+                descricao: "",
+                quantidade: "",
+                valor: "",
+            }
+            produto.descricao = document.getElementById("descricao").value
+            produto.quantidade = document.getElementById("quantidade").value
+            produto.valor = document.getElementById("valor").value
+
+            if (document.getElementById("descricao").value == '') {
+                alert("Digite a descrição!!")
+                document.getElementById("descricao").focus()
+                return
+            }
+
+            if (document.getElementById("quantidade").value == '') {
+                alert("Digite a quantidade!!")
+                document.getElementById("quantidade").focus()
+                return
+            }
+
+            if (document.getElementById("valor").value == '') {
+                alert("Digite o valor!!")
+                document.getElementById("valor").focus()
+                return
+            }
+
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(produto)
+            }
+
+            fetch("http://localhost:3000/produtos", options)
+                .then(data => data.json())
+                .then(cli => console.log(cli))
+
+            document.getElementById("descricao").value = ''
+            document.getElementById("quantidade").value = ''
+            document.getElementById("valor").value = ''
+
+        }
+        function limpar() {
+            document.getElementById("descricao").value = ''
+            document.getElementById("quantidade").value = ''
+            document.getElementById("valor").value = ''
+        }
+
+
+
+    </script>
+
+
+</body>
+
+</html>

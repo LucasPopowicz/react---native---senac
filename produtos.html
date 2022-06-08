@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<link rel="stylesheet" href="/estilos.css"/>
-<style>
-    th{
-        border: solid black 5px;
-    }
-    tr{
-        background-color: white;;
-        border: solid black 10px;
-        
-    }
- 
-</style>
+<link rel="stylesheet" href="/estilos.css" />
+
 <body>
     <div class="menu">
         <a href="index.html" target="centro"><button class="botão">HOME</button></a>
+        <a href="cadastrocliente.html" target="centro"><button class="botão">CADASTRO DE CLIENTES</button></a>
         <a href="cliente.html" target="centro"><button class="botão">CLIENTES</button></a>
+        <a href="cadastroproduto.html" target="centro"><button class="botão">CADASTRO DE PRODUTO</button></a>
         <a href="produtos.html" target="centro"><button class="botão">PRODUTOS</button></a>
         <a href="login.html" target="centro"><button class="botão">LOGIN</button></a>
-        </div>
+    </div>
     <button onclick="load()">Pesquisar</button>
-    
+
     <table>
         <thead>
             <tr>
-                <th>Item</th>
-                <th>Produto</th>
+                <th>Id</th>
+                <th>Descrição</th>
+                <th>Quantidade</th>
                 <th>Valor</th>
-                <th>Quantidade em estoque</th>
             </tr>
         </thead>
         <tbody id="dados">
@@ -47,25 +40,26 @@
                 .then(x => x.json()) //usar o .json vem em dados .text vem em forma de texto
                 .then(produtos => {
                     var linhas = ""
-                  
+
                     for (let i = 0; i < produtos.length; i++) {
                         linhas += `<tr>
-                <td>${produtos[i].item}</td>
-                <td>${produtos[i].produto}</td>
-                <td>${produtos[i].valor}</td>
+                            <td>${produtos[i].id}</td>
+                <td>${produtos[i].descricao}</td>
                 <td>${produtos[i].quantidade}</td>
+                <td>${produtos[i].valor}</td>
                 </tr>`
                     }
                     document.getElementById("dados").innerHTML = linhas
 
                 }) // usar dois .then pra ter garantia que o primeiro já foi executado
-       
+
 
         }
 
 
-        
-      
+
+
     </script>
 </body>
+
 </html>
