@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width>, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/estilos.css"/>
+    <link rel="stylesheet" href="/estilos.css" />
 </head>
+
 <body>
 
     <div class="menu">
@@ -15,6 +17,153 @@
         <a href="cadastroproduto.html" target="centro"><button class="botão">CADASTRO DE PRODUTO</button></a>
         <a href="produtos.html" target="centro"><button class="botão">PRODUTOS</button></a>
         <a href="login.html" target="centro"><button class="botão">LOGIN</button></a>
+    </div>
+    <div class="pesquisarCliente">
+        <hr>
+        <label>Digite o ID do cliente que deseja buscar</label><br>
+        <input id="idcliente" type="number" placeholder="Informe o ID" /><br>
+        <label id="resultado"></label><br>
+        <button onclick="pesquisarCliente()">Pesquisar</button>
+        <button onclick="alterarCliente()">Alterar Dados</button>
+        <hr>
+    </div>
+    <div id="dadosCliente" class="pesquisarCliente esconder">
+        <label>
+            Nome
+        </label>
+        <input type="text" id="nome" placeholder="Informe o nome do cliente" />
+        </label>
+        Email
+        <label>
+            <input type="email" id="email" placeholder="Informe o email do cliente" />
+        </label>
+        Fone
+        </label>
+        <input type="text" id="fone" placeholder="Informe o telefone do cliente" />
+        <div>
+            <button onclick="salvar()">Salvar</button>
+            <button onclick="limpar()">Apagar</button>
         </div>
+    </div>
+
+
+
+    <div class="pesquisarProduto">
+        <hr>
+        <label>Digite o ID do Produto que deseja buscar</label><br>
+        <input id="idproduto" type="number" placeholder="Informe o ID" /><br>
+        <label id="resultadoproduto"></label><br>
+        <button onclick="pesquisarProduto()">Pesquisar</button>
+        <button onclick="alterarProduto()">Alterar Dados</button>
+        <hr>
+    </div>
+
+    <div id="dadosProdutos" class="pesquisarProduto esconder">
+        <label>
+            Descrição 
+        </label>
+        <input type="text" id="descricao" placeholder="Informe a Descrição do produto" />
+        </label>
+        Quantidade
+        <label>
+            <input type="text" id="quantidade" placeholder="Informe a quantidade em estoque" />
+        </label>
+        Valor
+        </label>
+        <input type="text" id="valor" placeholder="Informe o valor pago" />
+        <div>
+            <button onclick="salvar()">Salvar</button>
+            <button onclick="limpar()">Apagar</button>
+        </div>
+    </div>
+
+
+
+    <script>
+        function pesquisarCliente() {
+            var idpesquisa = document.getElementById("idcliente").value
+            fetch(`http://localhost:3000/clientes/${idpesquisa}`)
+                .then(data => data.json())
+                .then(result => document.getElementById("resultado").innerHTML = result.nome)
+
+        }
+        function pesquisarProduto() {
+            var idpesquisa = document.getElementById("idproduto").value
+            fetch(`http://localhost:3000/produtos/${idpesquisa}`)
+                .then(data => data.json())
+                .then(result => document.getElementById("resultadoproduto").innerHTML = result.descricao)
+           
+        }
+
+        function alterarCliente() {
+            var idalterar = document.getElementById("idcliente").value
+            fetch(`http://localhost:3000/clientes/${idalterar}`)
+                .then(data => data.json())//data é o nome dado ao objeto que eu recebi em string o .json transforma em objeto
+                .then(result => {
+                    document.getElementById("dadosCliente").classList.remove("esconder") //faz remover o CSS que eu coloquei
+                    document.getElementById("nome").value = result.nome
+                    document.getElementById("email").value = result.email
+                    document.getElementById("fone").value = result.fone
+                })
+        }
+        function salvar() {
+            const cliente = {
+                nome: "",
+                email: "",
+                fone: "",
+            }
+            cliente.nome = document.getElementById("nome").value
+            cliente.email = document.getElementById("email").value
+            cliente.fone = document.getElementById("fone").value
+            const options = {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(cliente)
+            }
+            var idpesquisa = document.getElementById("idcliente").value
+            fetch(`http://localhost:3000/clientes/${idpesquisa}`, options)
+                .then(data => data.json())
+                .then(cli => console.log(cli))
+        }
+        function limpar() {
+            document.getElementById("nome").value = ''
+            document.getElementById("email").value = ''
+            document.getElementById("fone").value = ''
+
+        }
+        function alterarProduto() {
+            var idalterarproduto = document.getElementById("idproduto").value
+            fetch(`http://localhost:3000/produtos/${idalterarproduto}`)
+                .then(data => data.json())
+                .then(result => {
+                    document.getElementById("dadosProdutos").classList.remove("esconder")
+                    document.getElementById("descricao").value = result.descricao
+                    document.getElementById("quantidade").value = result.quantidade
+                    document.getElementById("valor").value = result.valor
+                }
+                )
+        }
+        function salvar() {
+            const produto = {
+                descricao: "",
+                quantidade: "",
+                valor: "",
+            }
+            produto.descricao = document.getElementById("descricao").value
+            produto.quantidade = document.getElementById("quantidade").value
+            produto.valor = document.getElementById("valor").value
+            const options = {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(produto)
+            }
+            var idpesquisa = document.getElementById("idproduto").value
+            fetch(`http://localhost:3000/produtos/${idpesquisa}`, options)
+                .then(data => data.json())
+                .then(cli => console.log(cli))
+        }
+    </script>
+
 </body>
+
 </html>
