@@ -41,3 +41,16 @@ th{
 body{
     background-color:  #DCDCDC;
 }
+.pesquisarCliente{
+    text-align: center;
+    position: relative;
+    top: 150px;
+}
+.pesquisarProduto{
+    text-align: center;
+    position: relative;
+    top: 300px;
+}
+.esconder{
+    display: none;
+}

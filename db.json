@@ -1,150 +1,24 @@
 {
   "clientes": [
     {
-      "nome": "LUCAS",
-      "email": "LUCAS@",
-      "fone": "123",
+      "nome": "Lucas Popow",
+      "email": "lucas_popowicz@outlook.com",
+      "fone": "123456",
       "id": 1
     },
     {
-      "nome": "ss",
-      "email": "ssssssssss",
-      "fone": "sss",
+      "nome": "André",
+      "email": "andre@gmail",
+      "fone": "12369",
       "id": 2
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 3
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 4
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 5
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 6
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 7
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 8
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 9
-    },
-    {
-      "nome": "ssd",
-      "email": "sdsd",
-      "fone": "s",
-      "id": 10
-    },
-    {
-      "nome": "sdsd",
-      "email": "",
-      "fone": "",
-      "id": 11
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 12
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 13
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 14
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 15
-    },
-    {
-      "nome": "",
-      "email": "",
-      "fone": "",
-      "id": 16
-    },
-    {
-      "nome": "sas",
-      "email": "sas",
-      "fone": "s",
-      "id": 17
-    },
-    {
-      "nome": "sd",
-      "email": "sd",
-      "fone": "sd",
-      "id": 18
-    },
-    {
-      "nome": "sd",
-      "email": "sd",
-      "fone": "sd",
-      "id": 19
-    },
-    {
-      "nome": "dsd",
-      "email": "ss",
-      "fone": "s",
-      "id": 20
-    },
-    {
-      "nome": "dsd",
-      "email": "sdsd",
-      "fone": "ss",
-      "id": 21
     }
   ],
   "produtos": [
     {
-      "descricao": "sdsd",
-      "quantidade": "s",
-      "valor": "10",
+      "descricao": "dsdssssss",
+      "quantidade": "sds",
+      "valor": "s",
       "id": 1
-    },
-    {
-      "descricao": "Banana",
-      "quantidade": "350",
-      "valor": "2,50",
-      "id": 2
-    },
-    {
-      "descricao": "Uva",
-      "quantidade": "100",
-      "valor": "1,50",
-      "id": 3
     }
   ]
 }

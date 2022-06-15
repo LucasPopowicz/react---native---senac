@@ -9,6 +9,23 @@
 <link rel="stylesheet" href="/estilos.css"/>
 
 <body>
+    <div id="alterarCliente" class="pesquisarCliente esconder">
+        <label>
+            Nome
+        </label>
+        <input type="text" id="nome" placeholder="Informe o nome do cliente" />
+        </label>
+        Email
+        <label>
+            <input type="email" id="email" placeholder="Informe o email do cliente" />
+        </label>
+        Fone
+        </label>
+        <input type="text" id="fone" placeholder="Informe o telefone do cliente" />
+        <div id="botoes">
+
+        </div>
+    </div>
     
     <div class="menu">
         <a href="index.html" target="centro"><button class="botão">HOME</button></a>
@@ -27,6 +44,8 @@
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Fone</th>
+                <th>Excluir</th>
+                <th>Editar</th>
             </tr>
         </thead>
         <tbody id="dados">
@@ -47,7 +66,9 @@
                 <td>${clientes[i].id}</td>
                 <td>${clientes[i].nome}</td>
                 <td>${clientes[i].email}</td>
-                <td>${clientes[i].fone}</td>
+                <td>${clientes[i].fone}</td>             
+                <td><button onclick=excluir(${clientes[i].id})>Excluir</button></td>
+                <td><button onclick=alterar(${clientes[i].id})>Alterar</button></td>
                 </tr>`
                     }
                     document.getElementById("dados").innerHTML = linhas
@@ -63,8 +84,68 @@
 
         }
 */
-        
-      
+        function excluir(idcliente){
+            fetch(`http://localhost:3000/clientes/${idcliente}`, {method: 'DELETE'})
+                .then(data => data.json())
+                .then(cli => alert('Cliente excluido com sucesso'))
+
+        }
+        function alterar(idcliente) {
+            fetch(`http://localhost:3000/clientes/${idcliente}`)
+                .then(data => data.json())//data é o nome dado ao objeto que eu recebi em string o .json transforma em objeto
+                .then(result => {
+                    `<div id="alterarCliente" class="pesquisarCliente esconder">
+        <label>
+            Nome
+        </label>
+        <input type="text" id="nome" placeholder="Informe o nome do cliente" />
+        </label>
+        Email
+        <label>
+            <input type="email" id="email" placeholder="Informe o email do cliente" />
+        </label>
+        Fone
+        </label>
+        <input type="text" id="fone" placeholder="Informe o telefone do cliente" />
+        <div id="botoes">
+
+        </div>
+    </div>`
+                    document.getElementById("alterarCliente").classList.remove("esconder") //faz remover o CSS que eu coloquei
+                    document.getElementById("nome").value = result.nome
+                    document.getElementById("email").value = result.email
+                    document.getElementById("fone").value = result.fone
+                    document.getElementById("botoes").innerHTML +=`
+                    <button onclick="alterarCliente(${idcliente})">Salvar</button>
+                    <button onclick="limpar()">Apagar</button>`
+                })
+        }
+        function alterarCliente(idCliente) {
+            const cliente = {
+                nome: "",
+                email: "",
+                fone: "",
+            }
+            cliente.nome = document.getElementById("nome").value
+            cliente.email = document.getElementById("email").value
+            cliente.fone = document.getElementById("fone").value
+            const options = {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(cliente)
+            }
+        alert(`http://localhost:3000/clientes/${idCliente}`);
+            fetch(`http://localhost:3000/clientes/${idCliente}`, options)
+                .then(data => data.json())
+                .then(cli => console.log(cli))
+        }
+
+        function limpar() {
+            document.getElementById("nome").value = ''
+            document.getElementById("email").value = ''
+            document.getElementById("fone").value = ''
+
+        }
     </script>
 </body>
 

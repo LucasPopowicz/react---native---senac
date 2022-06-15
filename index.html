@@ -25,6 +25,7 @@
         <label id="resultado"></label><br>
         <button onclick="pesquisarCliente()">Pesquisar</button>
         <button onclick="alterarCliente()">Alterar Dados</button>
+        <button onclick="excluirSistema()">Excluir do sistema</button>
         <hr>
     </div>
     <div id="dadosCliente" class="pesquisarCliente esconder">
@@ -41,7 +42,7 @@
         </label>
         <input type="text" id="fone" placeholder="Informe o telefone do cliente" />
         <div>
-            <button onclick="salvar()">Salvar</button>
+            <button onclick="salvarCliente()">Salvar</button>
             <button onclick="limpar()">Apagar</button>
         </div>
     </div>
@@ -55,6 +56,8 @@
         <label id="resultadoproduto"></label><br>
         <button onclick="pesquisarProduto()">Pesquisar</button>
         <button onclick="alterarProduto()">Alterar Dados</button>
+        <button onclick="excluirSistemaPro()">Excluir do sistema</button>
+
         <hr>
     </div>
 
@@ -72,7 +75,7 @@
         </label>
         <input type="text" id="valor" placeholder="Informe o valor pago" />
         <div>
-            <button onclick="salvar()">Salvar</button>
+            <button onclick="salvarProduto()">Salvar</button>
             <button onclick="limpar()">Apagar</button>
         </div>
     </div>
@@ -106,7 +109,7 @@
                     document.getElementById("fone").value = result.fone
                 })
         }
-        function salvar() {
+        function salvarCliente() {
             const cliente = {
                 nome: "",
                 email: "",
@@ -143,7 +146,7 @@
                 }
                 )
         }
-        function salvar() {
+        function salvarProduto() {
             const produto = {
                 descricao: "",
                 quantidade: "",
@@ -162,6 +165,20 @@
                 .then(data => data.json())
                 .then(cli => console.log(cli))
         }
+        function excluirSistema(){
+            var idpesquisa = document.getElementById("idcliente").value
+            fetch(`http://localhost:3000/clientes/${idpesquisa}`, {method: 'DELETE'})
+                .then(data => data.json())
+                .then(cli => alert('Cliente excluido com sucesso'))
+        }
+        function excluirSistemaPro(){
+            var idpesquisa = document.getElementById("idproduto").value
+            fetch(`http://localhost:3000/produtos/${idpesquisa}`, {method: 'DELETE'})
+            .then(data => data.json())
+                .then(cli => console.log(cli))
+                .then(cli => alert('Produto excluido com sucesso'))
+        }
+        
     </script>
 
 </body>

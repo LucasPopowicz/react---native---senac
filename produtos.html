@@ -47,6 +47,8 @@
                 <td>${produtos[i].descricao}</td>
                 <td>${produtos[i].quantidade}</td>
                 <td>${produtos[i].valor}</td>
+                <td><button onclick=excluir(${produtos[i].id})>Excluir</button></td>
+                <td><button>Alterar</button></td>
                 </tr>`
                     }
                     document.getElementById("dados").innerHTML = linhas
@@ -55,7 +57,12 @@
 
 
         }
+        function excluir(idproduto){
+            fetch(`http://localhost:3000/produtos/${idproduto}`, {method: 'DELETE'})
+                .then(data => data.json())
+                .then(cli => alert('Cliente excluido com sucesso'))
 
+        }
 
 
 
